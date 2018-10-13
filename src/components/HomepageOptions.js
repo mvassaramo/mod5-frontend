@@ -17,11 +17,11 @@ export default class HomepageOptions extends React.Component {
 
   renderSelectedOption = () => {
     const {optionChosen} = this.state
-    const {requests, stylists} = this.props
+    const {requests, stylists, addRequest} = this.props
 
     switch(optionChosen) {
       case "requests":
-        return <RequestsContainer requests={requests}/>
+        return <RequestsContainer requests={requests} addRequest={addRequest}/>
         break
       case "muas":
         return <MuasContainer stylists={stylists}/>

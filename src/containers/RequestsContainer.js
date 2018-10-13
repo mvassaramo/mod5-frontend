@@ -6,8 +6,9 @@ import Search from '../components/Search'
 export default class RequestsContainer extends React.Component {
 
   state = {
-    searchQuery: ""
+    searchQuery: "",
   }
+
 
   updateSearch = (searchQuery) => this.setState({ searchQuery })
 
@@ -31,6 +32,7 @@ export default class RequestsContainer extends React.Component {
         {this.filterRequests().map(request =>
           <Request request={request} />
         )}
+      <button onClick={this.props.addRequest}>Post a request</button>
       </div>
     )
   }

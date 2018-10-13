@@ -4,6 +4,7 @@ import HomepageOptions from './components/HomepageOptions'
 import RequestsContainer from './containers/RequestsContainer'
 import StylistsContainer from './containers/StylistsContainer'
 import Header from './components/Header'
+import AddRequestForm from './components/AddRequestForm'
 const API = 'http://localhost:3000/api/v1/'
 
 export default class HomePage extends React.Component {
@@ -11,7 +12,11 @@ export default class HomePage extends React.Component {
   state = {
     stylists: [],
     requests: [],
+    currentUser: undefined,
+    addRequestForm: false
   }
+
+  addRequest = () => this.setState({ addRequestForm: true })
 
   getStylists = () => {
     return fetch(`${API}/stylist_listings`)
@@ -31,12 +36,16 @@ export default class HomePage extends React.Component {
   }
 
   render () {
-    const {requests, stylists} = this.state
+    const {requests, stylists, currentUser, addRequestForm} = this.state
 
     return(
       <React.Fragment>
-        <Header/>
-        <HomepageOptions requests={requests} stylists={stylists}/>
+        <Header currentUser={currentUser}/>
+        { addRequestForm ? <AddRequestForm/>
+            :
+          <HomepageOptions requests={requests} stylists={stylists} addRequest={this.addRequest}/>
+        }
+
       </React.Fragment>
     )
   }
