@@ -13,6 +13,8 @@ export default class Stylist extends React.Component {
         <p>{bio}</p>
         <p>Area: {area}</p>
         <p>Rating: {rating}</p>
+        <button value={this.props.stylist}
+          onClick={this.props.handleClick}>See Availability</button>
       </React.Fragment>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'semantic-ui-react'
+import { Input, Icon } from 'semantic-ui-react'
 
 
 const Search = (props) =>

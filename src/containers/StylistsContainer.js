@@ -2,12 +2,31 @@ import React from 'react'
 
 import Stylist from '../components/Stylist'
 import Search from '../components/Search'
+import StylistAvailability from '../components/StylistAvailability'
 
 export default class StylistsContainer extends React.Component {
 
   state = {
-    searchQuery: ""
+    searchQuery: "",
+    seeAvailability: false,
+    selectedStylist: undefined
   }
+
+  handleClick = (event) => {
+    this.showAvailability()
+    console.log(event.target)
+  }
+  renderSelectedAvailability = () => <StylistAvailability stylist={this.state.selectedStylist}/>
+
+  renderAllStylists = () =>
+    <div>
+      <Search updateSearch={this.updateSearch}/>
+      {this.filterStylists().map(stylist =>
+        <Stylist stylist={stylist} handleClick={this.handleClick}/>
+      )}
+    </div>
+
+  showAvailability = () => this.setState({ seeAvailability: true })
 
   updateSearch = (searchQuery) => this.setState({ searchQuery })
 
@@ -27,13 +46,14 @@ export default class StylistsContainer extends React.Component {
 
 
   render () {
+    const { seeAvailability } = this.state
+
     return(
-      <div>
-        <Search updateSearch={this.updateSearch}/>
-        {this.filterStylists().map(stylist =>
-          <Stylist stylist={stylist}/>
-        )}
-      </div>
+      <React.Fragment>
+      {
+        seeAvailability ? this.renderSelectedAvailability() : this.renderAllStylists()
+      }
+      </React.Fragment>
     )
   }
 
