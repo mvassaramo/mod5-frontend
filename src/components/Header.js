@@ -11,15 +11,9 @@ render ()  {
     <header className="homepage-header">
 
       {this.props.currentUser ?
-        <Dropdown item text="My Account">
-          <Dropdown.Item>Welcome, {this.props.currentUser}</Dropdown.Item>
-          <Dropdown.Item>Sign out</Dropdown.Item>
-          <Dropdown.Item>Post a request</Dropdown.Item>
-          <Dropdown.Item>See My Profile</Dropdown.Item>
-        </Dropdown>
+        <Dropdown item text="Sign Out" onClick={this.props.signOut}></Dropdown>
       : <React.Fragment>
-          <Dropdown item text="Log In"></Dropdown>
-          <Dropdown item text="Sign Up"></Dropdown>
+          <Dropdown item text="Log In"><LoginForm signIn={this.props.signIn}/></Dropdown>
         </React.Fragment>
       }
       <h1>Image Placeholder</h1>

@@ -1,32 +1,32 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'
 
 import Stylist from '../components/Stylist'
 import Search from '../components/Search'
-import StylistAvailability from '../components/StylistAvailability'
+import Filter from '../components/Filter'
+import StylistProfile from '../components/StylistProfile'
 
 export default class StylistsContainer extends React.Component {
 
   state = {
     searchQuery: "",
-    seeAvailability: false,
-    selectedStylist: undefined
+    seeProfile: false,
+    availabilities: []
   }
 
-  handleClick = (event) => {
-    this.showAvailability()
-    console.log(event.target)
+  handleClick = (stylistid) => {
+
   }
-  renderSelectedAvailability = () => <StylistAvailability stylist={this.state.selectedStylist}/>
 
   renderAllStylists = () =>
     <div>
-      <Search updateSearch={this.updateSearch}/>
+      <Search updateSearch={this.updateSearch}/> OR Search by Area
+      <Filter allStylists={this.props.stylists}/>
       {this.filterStylists().map(stylist =>
-        <Stylist stylist={stylist} handleClick={this.handleClick}/>
+        <Stylist stylist={stylist} />
       )}
     </div>
 
-  showAvailability = () => this.setState({ seeAvailability: true })
 
   updateSearch = (searchQuery) => this.setState({ searchQuery })
 
@@ -46,13 +46,14 @@ export default class StylistsContainer extends React.Component {
 
 
   render () {
-    const { seeAvailability } = this.state
+    const { seeProfile } = this.state
 
     return(
       <React.Fragment>
       {
-        seeAvailability ? this.renderSelectedAvailability() : this.renderAllStylists()
+        this.renderAllStylists()
       }
+
       </React.Fragment>
     )
   }
