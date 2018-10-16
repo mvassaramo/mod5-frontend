@@ -13,7 +13,7 @@ export default class LoginForm extends React.Component {
   }
 
   render () {
-    const { email, password, showModal } = this.state
+    const { email, password } = this.state
     const { handleChange } = this
 
     return (

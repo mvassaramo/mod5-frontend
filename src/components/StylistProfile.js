@@ -1,12 +1,30 @@
 import React from 'react'
 import { Menu, Table, Icon, Label } from 'semantic-ui-react'
-
+import Availability from './Availability'
 
 export default class StylistProfile extends React.Component {
 
   state = {
     availabilities: [],
-    stylist: undefined
+    stylist: undefined,
+    selectedDate: ""
+  }
+
+  selectDate = (date) => {
+    this.setState({selectedDate: date})
+  }
+
+  renderAvailabilities = (availabilities) =>
+  <div className="availability-container">
+    {availabilities.map(availability=>
+      <Availability availability={availability} makeBookingToServer={this.makeBookingToServer}/>
+    )}
+  </div>
+
+  filterAvailabilities = () => {
+     return this.state.availabilities.filter(avail =>
+      avail.date == this.state.selectedDate
+    )
   }
 
   makeBookingToServer = (availability) => {
@@ -15,7 +33,7 @@ export default class StylistProfile extends React.Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         availability_id: availability.id,
-        user_id: 2
+        user_id: 13
       })
     })
     .then(() => {
@@ -40,7 +58,7 @@ export default class StylistProfile extends React.Component {
   }
 
   render () {
-    const { stylist } = this.state
+    const { stylist, selectedDate } = this.state
     return(
 
       stylist ?
@@ -49,25 +67,38 @@ export default class StylistProfile extends React.Component {
       <h4>Bio: {stylist.bio}</h4>
       <h4>Area: {stylist.area}</h4>
       <h4>Rating: {stylist.rating}</h4>
-        
 
-        <div className="grid-container">
-        {
+        { [...new Set(
           this.state.availabilities.map(availability =>
-          <div className="grid-item">
-             {availability.date}<br></br>
-             {availability.time}
-             { availability.booked ?
-               <p>Already taken</p>
-               : <button onClick={() => this.makeBookingToServer(availability)}>Book</button>
-             }
-           </div>
+              availability.date
            )
+         )].map(uniqAvail =>
+            <div className="grid-item" onClick={() => this.selectDate(uniqAvail)}>{uniqAvail}</div>
+         )
         }
-        </div>
+
+
+        { (selectedDate) ?
+              this.renderAvailabilities(
+                this.filterAvailabilities())
+            : true
+        }
+
 
   </React.Fragment>  :
       <h2>Loading...</h2>
     )
   }
 }
+
+
+
+//
+// <div className="grid-item">
+//    {availability.date}<br></br>
+//  </div>
+// {availability.time}
+// { availability.booked ?
+//   <p>Already taken</p>
+//   : <button onClick={() => this.makeBookingToServer(availability)}>Book</button>
+// }
