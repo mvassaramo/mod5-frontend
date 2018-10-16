@@ -42,28 +42,31 @@ export default class StylistProfile extends React.Component {
   render () {
     const { stylist } = this.state
     return(
+
       stylist ?
       <React.Fragment>
       <h3>{stylist.first_name} {stylist.last_name}</h3>
       <h4>Bio: {stylist.bio}</h4>
       <h4>Area: {stylist.area}</h4>
       <h4>Rating: {stylist.rating}</h4>
-      {<div className="grid-container">
-      {
-        this.state.availabilities.map(availability =>
-        <div className="grid-item">
-           {availability.date}<br></br>
-           {availability.time}
-           { availability.booked ?
-             <p>Already taken</p>
-             : <button onClick={() => this.makeBookingToServer(availability)}>Book</button>
-           }
-         </div>
-         )
-      }
-    </div>}
+        
 
-      </React.Fragment> :
+        <div className="grid-container">
+        {
+          this.state.availabilities.map(availability =>
+          <div className="grid-item">
+             {availability.date}<br></br>
+             {availability.time}
+             { availability.booked ?
+               <p>Already taken</p>
+               : <button onClick={() => this.makeBookingToServer(availability)}>Book</button>
+             }
+           </div>
+           )
+        }
+        </div>
+
+  </React.Fragment>  :
       <h2>Loading...</h2>
     )
   }

@@ -4,18 +4,13 @@ import {Button, Form, Header, Icon, Modal, Image} from 'semantic-ui-react'
 export default class LoginForm extends React.Component {
 
   state = {
-    email: undefined,
-    password: "",
-    modalOpen: false
+    email: "",
+    password: ""
   }
-  //
-  // handleOpen = () => this.setState({ modalOpen: true })
-  //
-  // handleClose = () => this.setState({ modalOpen: false })
-  //
-  // handleChange = (event) => {
-  //   this.setState({[event.target.name]: event.target.value})
-  // }
+
+  handleChange = (event) => {
+    this.setState({[event.target.name]: event.target.value})
+  }
 
   render () {
     const { email, password, showModal } = this.state
@@ -30,6 +25,7 @@ export default class LoginForm extends React.Component {
             placeholder='Email'
             margin='normal'
             name='email'
+            onChange={(e) => this.setState({email: e.target.value})}
           />
         </Form.Field>
         <Form.Field>
@@ -42,7 +38,7 @@ export default class LoginForm extends React.Component {
           type='password'
         />
         </Form.Field>
-        <Button variant='contained'>
+        <Button variant='contained' onClick={() => this.props.signIn(this.state.email)}>
           Log In
         </Button>
       </Form>

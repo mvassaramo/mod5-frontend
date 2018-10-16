@@ -7,9 +7,9 @@
   height: 40vmin;
 } */
 
-/* .App-header {
+.homepage-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +18,10 @@
   color: white;
 }
 
-.App-link {
+/* .App-link {
   color: #61dafb;
 } */
-/* 
+/*
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

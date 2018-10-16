@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 
 import LoginForm from './LoginForm'
+import homepage from '../images/homepage.jpg'
 
 export default class Header extends React.Component {
 
@@ -22,8 +23,14 @@ render ()  {
 }
 
 
+}
+
+
+
+
+
 
 // <Dropdown.Item><LoginForm/></Dropdown.Item>
 //
 
-}
+// <img src={homepage} alt="home" className="homepage-img"/>

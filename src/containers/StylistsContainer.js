@@ -11,18 +11,21 @@ export default class StylistsContainer extends React.Component {
   state = {
     searchQuery: "",
     seeProfile: false,
-    availabilities: []
+    availabilities: [],
+    findByService: ""
   }
 
-  handleClick = (stylistid) => {
 
+  findByService = (service) => {
+    this.setState( {findByService: service })
   }
 
-  renderAllStylists = () =>
+
+  renderStylists = stylists =>
     <div>
-      <Search updateSearch={this.updateSearch}/> OR Search by Area
-      <Filter allStylists={this.props.stylists}/>
-      {this.filterStylists().map(stylist =>
+      <Search updateSearch={this.updateSearch}/>
+      <Filter findByService={this.findByService} allStylists={this.props.stylists}/>
+      {stylists.map(stylist =>
         <Stylist stylist={stylist} />
       )}
     </div>
@@ -38,22 +41,27 @@ export default class StylistsContainer extends React.Component {
       const area = stylist.area.toLowerCase()
       const searchQuery = this.state.searchQuery.toLowerCase()
 
-      return first_name.includes(searchQuery)
+      return searchQuery.length > 0 ? (first_name.includes(searchQuery)
         || last_name.includes(searchQuery)
         || bio.includes(searchQuery)
-        || area.includes(searchQuery)
+        || area.includes(searchQuery)) : (
+          this.state.findByService.length > 0 ?
+          stylist.services.map(s => s.name).includes(this.state.findByService) :
+          true
+        )
     })
 
 
   render () {
-    const { seeProfile } = this.state
+    const { findByService } = this.state
 
     return(
       <React.Fragment>
-      {
-        this.renderAllStylists()
-      }
-
+        {
+          this.renderStylists(
+            this.filterStylists()
+          )
+        }
       </React.Fragment>
     )
   }

@@ -3,27 +3,17 @@ import React from 'react'
 
 export default class Filter extends React.Component {
 
-  state = {
-    areas: []
-  }
-
-  populateAreas = () => {
-    this.props.allStylists.map(stylist =>
-      this.setState({ areas: stylist.area })
-    )
-  }
-
-  renderAreaOptions = () =>
-    <select>
-      <option value="">area1</option>
-      <option value="">area2</option>
-      <option value="">area3</option>
+  renderServiceOptions = () =>
+    <select onChange={(event) => this.props.findByService(event.target.value)}>
+      <option value="">Find by service</option>
+      <option value="MUA">MUA</option>
+      <option value="Hair Stylist">Hair Stylist</option>
     </select>
 
   render () {
     return(
       <React.Fragment>
-        {this.renderAreaOptions()}
+        {this.renderServiceOptions()}
       </React.Fragment>
     )
   }
