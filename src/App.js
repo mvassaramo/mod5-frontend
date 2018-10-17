@@ -13,7 +13,8 @@ import AddRequestForm from './components/AddRequestForm'
 import MuasContainer from './containers/MuasContainer'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
-
+import BecomeStylistForm from './components/BecomeStylistForm'
+import MyAccount from './components/MyAccount'
 
 
 const API = 'http://localhost:3000/api/v1/'
@@ -81,9 +82,8 @@ export default class App extends React.Component {
 
     return(
       <React.Fragment>
-        <div className="App">
         <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut}/>
-
+          <div className="App">
         <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
         <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
         <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} />} />
@@ -93,6 +93,8 @@ export default class App extends React.Component {
         <Route exact path='/requests/addRequest' render={props => <AddRequestForm {...props} />} />
         <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn}/>} />
         <Route exact path='/signup' render={props => <SignupForm {...props} />} />
+        <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser}/>} />
+        <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser}/>} />
 
       </div>
       </React.Fragment>
