@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Input, Icon } from 'semantic-ui-react'
 
 
@@ -9,7 +10,7 @@ const Search = (props) =>
       placeholder={"Search..."}
       onChange={(event) => props.updateSearch(event.target.value)}
     />
-    <i className="circular search link icon"></i>
+      <i className="circular search link icon"></i>
   </div>
 
 

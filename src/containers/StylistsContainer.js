@@ -26,7 +26,7 @@ export default class StylistsContainer extends React.Component {
       <Search updateSearch={this.updateSearch}/>
       <Filter findByService={this.findByService} allStylists={this.props.stylists}/>
       {stylists.map(stylist =>
-        <Stylist stylist={stylist} />
+        <Stylist stylist={stylist} currentUser={this.props.currentUser}/>
       )}
     </div>
 

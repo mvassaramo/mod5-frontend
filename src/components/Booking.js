@@ -8,4 +8,4 @@ const Booking = (props) => {
   )
 }
 
-export default Request
+export default Booking

@@ -11,6 +11,8 @@ export default class Stylist extends React.Component {
 
     return(
       <React.Fragment>
+        <Link to={`/stylists/${id}`}>
+      <div className="stylist-card">
         <h3>{first_name} {last_name}</h3>
         { this.props.stylist.services.map(service =>
               <p>{service.name}</p>
@@ -18,11 +20,7 @@ export default class Stylist extends React.Component {
         }
         <p>Area: {area}</p>
         <p>Rating: {rating}</p>
-        <Link to={`/stylists/${id}`}
-          onClick={this.props.handleClick}>See Full Profile</Link><br></br>
-
-
-        <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} />} />
+      </div></Link>
       </React.Fragment>
     )
   }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Menu, Table, Icon, Label } from 'semantic-ui-react'
 import Availability from './Availability'
+import ErrorPopup from './ErrorPopup'
+
 
 export default class StylistProfile extends React.Component {
 
@@ -28,23 +30,25 @@ export default class StylistProfile extends React.Component {
   }
 
   makeBookingToServer = (availability) => {
-    fetch ('http://localhost:3000/api/v1/bookings', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        availability_id: availability.id,
-        user_id: 13
-      })
-    })
-    .then(() => {
-      this.setState({
-        availabilities: this.state.availabilities.map(av => {
-          if (av.id !== availability.id) return av
-          av.booked = true
-          return av
+
+      fetch ('http://localhost:3000/api/v1/bookings', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          availability_id: availability.id,
+          user_id: this.props.currentUser.id
         })
       })
-    })
+      .then(() => {
+        this.setState({
+          availabilities: this.state.availabilities.map(av => {
+            if (av.id !== availability.id) return av
+            av.booked = true
+            return av
+          })
+        })
+      })
+
 
   }
 
@@ -63,10 +67,10 @@ export default class StylistProfile extends React.Component {
 
       stylist ?
       <React.Fragment>
-      <h3>{stylist.first_name} {stylist.last_name}</h3>
-      <h4>Bio: {stylist.bio}</h4>
-      <h4>Area: {stylist.area}</h4>
-      <h4>Rating: {stylist.rating}</h4>
+        <h3>{stylist.first_name} {stylist.last_name}</h3>
+        <h4>Bio: {stylist.bio}</h4>
+        <h4>Area: {stylist.area}</h4>
+        <h4>Rating: {stylist.rating}</h4>
 
         { [...new Set(
           this.state.availabilities.map(availability =>
@@ -84,8 +88,7 @@ export default class StylistProfile extends React.Component {
             : true
         }
 
-
-  </React.Fragment>  :
+      </React.Fragment>  :
       <h2>Loading...</h2>
     )
   }

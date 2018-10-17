@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Request from '../components/Request'
 import RequestDetails from '../components/RequestDetails'
@@ -11,7 +12,7 @@ export default class RequestsContainer extends React.Component {
     selectedRequest: undefined
   }
 
-  renderSelectedRequest = () => <RequestDetails/>
+  // renderSelectedRequest = () => <RequestDetails/>
 
   renderAllRequests = () =>
     <div>
@@ -19,7 +20,6 @@ export default class RequestsContainer extends React.Component {
       {this.filterRequests().map(request =>
         <Request request={request} selectRequest={this.selectRequest}/>
       )}
-    <button onClick={this.props.addRequest}>Post a request</button>
     </div>
 
   selectRequest = (selectedRequest) => this.setState({ selectedRequest })
@@ -43,9 +43,8 @@ export default class RequestsContainer extends React.Component {
     const {selectedRequest} = this.state
     return(
       <React.Fragment>
-        {
-          selectedRequest ? this.renderSelectedRequest() : this.renderAllRequests()
-        }
+        <Link to='/requests/addRequest'><button>Post a request!</button></Link><br></br>
+        {this.renderAllRequests()}
       </React.Fragment>
     )
   }
