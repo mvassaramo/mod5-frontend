@@ -15,6 +15,8 @@ import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
 import BecomeStylistForm from './components/BecomeStylistForm'
 import MyAccount from './components/MyAccount'
+import Success from './components/Success'
+import Footer from './components/Footer'
 
 
 const API = 'http://localhost:3000/api/v1/'
@@ -24,7 +26,8 @@ export default class App extends React.Component {
   state = {
     stylists: [],
     requests: [],
-    currentUser: window.localStorage.getItem('currentUser') ? JSON.parse(window.localStorage.getItem('currentUser')) : undefined,
+    services: [],
+    currentUser: window.localStorage.getItem('currentUser') ? JSON.parse(window.localStorage.getItem('currentUser')) : undefined
   }
 
   getUser = (user) => {
@@ -51,7 +54,10 @@ export default class App extends React.Component {
       .then(data => this.setState({currentUser: data},
         () => localStorage.setItem('currentUser', JSON.stringify(data))
       ))
+      .then(this.renderSuccess())
   }
+
+  renderSuccess = () => <Success/>
 
   signOut = () => {
     this.setState({currentUser: undefined})
@@ -71,14 +77,20 @@ export default class App extends React.Component {
     .then(resp => resp.json())
     .then(requests => this.setState({ requests }))
   }
+  getServices = () => {
+    return fetch(`${API}/services`)
+    .then(resp => resp.json())
+    .then(services => this.setState({ services }))
+  }
 
   componentDidMount() {
     this.getRequests()
     this.getStylists()
+    this.getServices()
   }
 
   render () {
-    const {requests, stylists, currentUser, addRequestForm} = this.state
+    const {requests, stylists, services, currentUser } = this.state
 
     return(
       <React.Fragment>
@@ -86,15 +98,15 @@ export default class App extends React.Component {
           <div className="App">
         <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
         <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
-        <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} />} />
+        <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} services={services} />} />
         <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
         <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />
         <Route exact path='/requests/:id' render={props => <RequestDetails {...props} request={requests.find(r => r.id === parseInt(props.match.params.id, 10) )} />} />
-        <Route exact path='/requests/addRequest' render={props => <AddRequestForm {...props} />} />
+        <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
         <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn}/>} />
         <Route exact path='/signup' render={props => <SignupForm {...props} />} />
         <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser}/>} />
-        <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser}/>} />
+        <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
 
       </div>
       </React.Fragment>

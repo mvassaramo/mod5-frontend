@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
-
+import ErrorPopup from './ErrorPopup'
 
 export default class Availability extends React.Component {
+
+  renderErrorMessage = () => <ErrorPopup/>
 
   render () {
     const { time, booked } = this.props.availability
@@ -10,10 +12,12 @@ export default class Availability extends React.Component {
       <React.Fragment>
       <div className="availabilities">
         <p>{time}</p>
-        { booked ?
+
+      {
+         booked ?
           <p>Already taken</p>
           : <button onClick={() => this.props.makeBookingToServer(this.props.availability)}>Book</button>
-        }
+      }
         </div>
       </React.Fragment>
     )

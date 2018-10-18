@@ -4,7 +4,7 @@ import React from 'react'
 const ErrorPopup = (props) => {
 
   return(
-      <p>Please sign in!</p>
+      <div>Please sign in!</div>
   )
 }
 

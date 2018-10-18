@@ -20,7 +20,7 @@ class AddRequestForm extends Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: 19,
+        user_id: this.props.currentUser.id,
         first_name: first_name,
         last_name: last_name,
         title: title,
@@ -53,6 +53,19 @@ class AddRequestForm extends Component {
           </Form.Field>
             <label>Post Title </label>
             <input name='title' value={title} onChange={this.handleChange}/>
+          <Form.Group inline>
+              <label>Looking for...</label>
+              <Form.Checkbox
+                label='MUA'
+                value='MUA'
+                onChange={this.handleChange}
+              />
+            <Form.Checkbox
+                label='Hair Stylist'
+                value='Hair Stylist'
+                onChange={this.handleChange}
+              />
+          </Form.Group>
           <Form.Field>
             <label>Date </label>
             <input name='date' value={date} onChange={this.handleChange}/>
@@ -61,19 +74,6 @@ class AddRequestForm extends Component {
             <label>Time </label>
             <input name='time'value={time} onChange={this.handleChange}/>
           </Form.Field>
-        </Form.Group>
-        <Form.Group inline>
-          <label>Looking for...</label>
-          <Form.Checkbox
-            label='MUA'
-            value='MUA'
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label='Hair Stylist'
-            value='Hair Stylist'
-            onChange={this.handleChange}
-          />
         </Form.Group>
         <Form.TextArea name='description' label='Description' placeholder="I'm looking for..." onChange={this.handleChange}/>
         <Form.Checkbox label='I agree to the Terms and Conditions' />

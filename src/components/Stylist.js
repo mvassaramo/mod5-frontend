@@ -19,7 +19,6 @@ export default class Stylist extends React.Component {
           )
         }
         <p>Area: {area}</p>
-        <p>Rating: {rating}</p>
       </div></Link>
       </React.Fragment>
     )

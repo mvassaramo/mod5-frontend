@@ -12,7 +12,6 @@ export default class RequestsContainer extends React.Component {
     selectedRequest: undefined
   }
 
-  // renderSelectedRequest = () => <RequestDetails/>
 
   renderAllRequests = () =>
     <div>
@@ -43,7 +42,8 @@ export default class RequestsContainer extends React.Component {
     const {selectedRequest} = this.state
     return(
       <React.Fragment>
-        <Link to='/requests/addRequest'><button>Post a request!</button></Link><br></br>
+        <Link to='/addRequest'><button>Post a request!</button></Link>
+        <br></br>
         {this.renderAllRequests()}
       </React.Fragment>
     )

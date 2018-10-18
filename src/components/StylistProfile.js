@@ -19,7 +19,9 @@ export default class StylistProfile extends React.Component {
   renderAvailabilities = (availabilities) =>
   <div className="availability-container">
     {availabilities.map(availability=>
-      <Availability availability={availability} makeBookingToServer={this.makeBookingToServer}/>
+      <Availability availability={availability}
+        makeBookingToServer={this.makeBookingToServer}
+        currentUser={this.props.currentUser}/>
     )}
   </div>
 
@@ -29,9 +31,14 @@ export default class StylistProfile extends React.Component {
     )
   }
 
-  makeBookingToServer = (availability) => {
+  renderError = () => {
+    console.log('sign in!')
+    return <ErrorPopup/>}
 
-      fetch ('http://localhost:3000/api/v1/bookings', {
+  makeBookingToServer = (availability) => {
+    this.props.currentUser ?
+
+      (fetch ('http://localhost:3000/api/v1/bookings', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -47,7 +54,8 @@ export default class StylistProfile extends React.Component {
             return av
           })
         })
-      })
+      }))
+      : this.renderError()
 
 
   }
