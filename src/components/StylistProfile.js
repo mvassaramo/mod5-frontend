@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Table, Icon, Label } from 'semantic-ui-react'
+import { Menu, Table, Label } from 'semantic-ui-react'
 import Availability from './Availability'
 import ErrorPopup from './ErrorPopup'
 
@@ -78,7 +78,6 @@ export default class StylistProfile extends React.Component {
         <h3>{stylist.first_name} {stylist.last_name}</h3>
         <h4>Bio: {stylist.bio}</h4>
         <h4>Area: {stylist.area}</h4>
-        <h4>Rating: {stylist.rating}</h4>
 
         { [...new Set(
           this.state.availabilities.map(availability =>
@@ -91,7 +90,6 @@ export default class StylistProfile extends React.Component {
          )
         }
 
-
         { (selectedDate) ?
               this.renderAvailabilities(
                 this.filterAvailabilities())
@@ -103,15 +101,3 @@ export default class StylistProfile extends React.Component {
     )
   }
 }
-
-
-
-//
-// <div className="grid-item">
-//    {availability.date}<br></br>
-//  </div>
-// {availability.time}
-// { availability.booked ?
-//   <p>Already taken</p>
-//   : <button onClick={() => this.makeBookingToServer(availability)}>Book</button>
-// }

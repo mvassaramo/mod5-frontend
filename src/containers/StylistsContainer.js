@@ -23,6 +23,7 @@ export default class StylistsContainer extends React.Component {
 
   renderStylists = stylists =>
     <div className="stylist-list">
+      <h1>All Hairstylists</h1>
       <Search updateSearch={this.updateSearch}/>
       <Filter findByService={this.findByService} allStylists={this.props.stylists} services={this.props.services}/>
       {stylists.map(stylist =>

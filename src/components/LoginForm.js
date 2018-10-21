@@ -17,6 +17,8 @@ export default class LoginForm extends React.Component {
     const { handleChange } = this
 
     return (
+      <React.Fragment>
+        <h3>Please sign in below</h3>
       <Form>
         <Form.Field>
           <label>Email</label>
@@ -38,10 +40,12 @@ export default class LoginForm extends React.Component {
           type='password'
         />
         </Form.Field>
+        <br></br>
         <Button variant='contained' onClick={() => this.props.signIn(this.state.email)}>
           Log In
         </Button>
       </Form>
+    </React.Fragment>
 
     )
   }

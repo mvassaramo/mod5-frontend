@@ -7,7 +7,6 @@ import hairstudio from './images/hairstudio.jpg'
 import requestImage from './images/requestImage.jpg'
 
 
-
 export default class HomePage extends React.Component {
 
 
@@ -15,10 +14,11 @@ export default class HomePage extends React.Component {
 
     return(
       <React.Fragment>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <Link to='/muas'><img src={makeupBrushes} className="homepage-option"/></Link><br></br>
-        <Link to='/stylists'><img src={hairstudio} className="homepage-option"/></Link><br></br>
-        <Link to='/requests'><img src={requestImage} className="homepage-option"/></Link>
+        <br></br>
+        <Link to='/muas'><button className="homepage-option">Makeup Artists</button></Link>
+        <Link to='/stylists'><button className="homepage-option">Stylists</button></Link>
+        <Link to='/requests'><button className="homepage-option">Requests</button></Link>
+         <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
       </React.Fragment>
     )
   }
@@ -26,4 +26,4 @@ export default class HomePage extends React.Component {
 }
 
 //
-//
+//        <br></br><br></br><br></br><br></br><br></br><br></br>

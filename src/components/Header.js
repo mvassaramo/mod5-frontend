@@ -22,6 +22,7 @@ render ()  {
   return(
     <header className="homepage-header">
       <Link to='/'><li className="header-link">Home</li></Link>
+      <Link to='/About'><li className="header-link">About</li></Link>
       <Link to='/muas'><li className="header-link">MUAs</li></Link>
       <Link to='/stylists'><li className="header-link">Stylists</li></Link>
       <Link to='/requests'><li className="header-link">Requests</li></Link>

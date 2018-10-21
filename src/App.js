@@ -18,6 +18,8 @@ import BecomeStylistForm from './components/BecomeStylistForm'
 import MyAccount from './components/MyAccount'
 import Success from './components/Success'
 import Footer from './components/Footer'
+import About from './components/About'
+
 
 
 const API = 'http://localhost:3000/api/v1/'
@@ -115,7 +117,6 @@ export default class App extends React.Component {
       <React.Fragment>
         <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut} />
         <div className="App">
-          <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
           <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
           <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} services={services} />} />
           <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
@@ -126,8 +127,13 @@ export default class App extends React.Component {
           <Route exact path='/signup' render={props => <SignupForm {...props} services={services} createNotification={this.createNotification}/>} />
           <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser} services={services}/>} />
           <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
+          <Route exact path='/About' render={props => <About {...props} />} />
+
       </div>
-       <NotificationContainer/>
+        <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
+        <NotificationContainer/>
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <Footer/>
       </React.Fragment>
     )
   }

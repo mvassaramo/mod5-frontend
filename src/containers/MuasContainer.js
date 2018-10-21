@@ -30,6 +30,7 @@ export default class MuasContainer extends React.Component {
   render () {
     return(
       <div>
+        <h1>Makeup Artists</h1>
         <Search updateSearch={this.updateSearch}/>
         {this.filterMuas().map(stylist =>
           <Stylist stylist={stylist}/>

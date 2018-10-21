@@ -54,7 +54,7 @@ export default class MyAccount extends React.Component {
                 </div>
               )
             }
-            <h4>Stylist bookings</h4>
+            <h4>Treatments booked:</h4>
             {this.state.appointments.filter(appt =>
                 appt.customer_id === this.props.currentUser.id
               ).map(stylistappt =>
@@ -74,15 +74,3 @@ export default class MyAccount extends React.Component {
 
 
 }
-
-//
-// {this.state.appointments.map(appointment =>
-//   <div>
-//   <p>{appointment.customer_name}</p>
-//   <p>{appointment.stylist_name}</p>
-//   <p>{appointment.time}</p>
-//   <p>{appointment.date}</p>
-//   </div>
-//   )
-//
-// }

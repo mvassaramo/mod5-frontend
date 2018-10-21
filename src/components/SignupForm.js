@@ -44,7 +44,9 @@ export default class SignupForm extends React.Component {
         const { first_name, last_name, email, contact_number, profile_image } = this.state
 
         return (
-          <Form>
+          <React.Fragment>
+          <h3>Register below!</h3>
+          <Form className="form">
             <Form.Group>
               <Form.Field>
                 <label>First Name </label>
@@ -71,6 +73,7 @@ export default class SignupForm extends React.Component {
             <Form.Checkbox label='I agree to the Terms and Conditions' />
             <Button onClick={this.createUserOnServer}>Submit</Button>
           </Form>
+          </React.Fragment>
         )
       }
 

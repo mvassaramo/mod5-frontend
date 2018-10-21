@@ -43,6 +43,7 @@ export default class RequestsContainer extends React.Component {
     return(
       <React.Fragment>
         <Link to='/addRequest'><button>Post a request!</button></Link>
+          <h1>Customer Requests</h1>
         <br></br>
         {this.renderAllRequests()}
       </React.Fragment>
