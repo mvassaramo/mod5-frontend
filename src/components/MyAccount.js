@@ -35,11 +35,13 @@ export default class MyAccount extends React.Component {
     const {first_name, last_name, services, availabilities, stylist_listing} = this.props.currentUser
     return(
       <React.Fragment>
+
         <h4>My details</h4>
         <p>First Name: {first_name}</p>
         <p>Last Name: {last_name}</p>
-        
+
           <h3>Bookings:</h3>
+
             <h4>Customer bookings</h4>
             {this.state.appointments.filter(appt =>
                 appt.stylist_id === this.props.currentUser.id

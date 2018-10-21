@@ -21,26 +21,23 @@ renderSignup = () => {
 render ()  {
   return(
     <header className="homepage-header">
-      <Link to='/'><button>Home</button></Link>
-      <Link to='/muas'><button>MUAs</button></Link>
-      <Link to='/stylists'><button>Stylists</button></Link>
-      <Link to='/requests'><button>Requests</button></Link>
+      <Link to='/'><li className="header-link">Home</li></Link>
+      <Link to='/muas'><li className="header-link">MUAs</li></Link>
+      <Link to='/stylists'><li className="header-link">Stylists</li></Link>
+      <Link to='/requests'><li className="header-link">Requests</li></Link>
         <img src={headerImage} className="header-img" />
 
       {this.props.currentUser ?
         <div>
-          {
-              (this.props.currentUser.first_name) ?
-                  <h3>Welcome, {this.props.currentUser.first_name}</h3>
-                  : <h3>Welcome</h3>
-          }
-          <Link to='/newstylist'><button>Become a Stylist</button></Link>
-          <Link to='/myaccount'><button>My Account</button></Link>
-          <button onClick={this.props.signOut}>Sign Out</button>
+          <li className="header-link" onClick={this.props.signOut}>Sign Out</li>
+          <Link to='/myaccount'><li className="header-link">My Account</li></Link>
+            { !this.props.currentUser.stylist_listing  ?
+              <Link to='/newstylist'><li className="header-link">Become a Stylist</li></Link> : null
+            }
         </div>
       : <React.Fragment>
-          <Link to='/signin'><button>Login</button></Link>
-          <Link to='/signup'><button>Sign up</button></Link>
+          <Link to='/signup'><li className="header-link">Sign up</li></Link>
+          <Link to='/signin'><li className="header-link">Login</li></Link>
         </React.Fragment>
       }
     </header>

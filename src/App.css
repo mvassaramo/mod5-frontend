@@ -1,6 +1,9 @@
 .App {
   text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
 }
+
+
 
 /* .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -9,16 +12,30 @@
 
 .homepage-header {
   background-color: #f5e3e0;
-  min-height: 50vh;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 2vmin);
   color: white;
+  min-height: 99vmin;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-.footer {
+.header-link {
+  display: inline;
+  float: right;
+  color: white;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  border-right: 1px solid #bbb;
+}
+
+.header-link:hover {
+    background-color: rgb(11, 10, 15);
+}
+
+/* .footer {
    position: fixed;
    left: 0;
    bottom: 0;
@@ -27,17 +44,16 @@
    color: white;
    font-size: 8px;
    text-align: auto;
-}
-
-/* .App-link {
-  color: #61dafb;
 } */
+
+
 /*
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.homepage-header {
+  background-color: #f5e3e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 } */

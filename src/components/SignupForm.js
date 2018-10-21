@@ -1,6 +1,8 @@
 import React from 'react'
 import { Form, Input, Button } from 'semantic-ui-react'
 
+import BecomeStylistForm from './BecomeStylistForm'
+
 
 export default class SignupForm extends React.Component {
   state = {
@@ -25,11 +27,16 @@ export default class SignupForm extends React.Component {
       })
     })
       .then(resp => console.log(resp))
+      .then(this.props.createNotification('newsignup'))
   }
 
   handleChange = (event) => {
       this.setState({[event.target.name]: event.target.value})
     }
+
+  registerStylist = () => {
+    return <BecomeStylistForm/>
+  }
 
 
   render () {
@@ -58,6 +65,9 @@ export default class SignupForm extends React.Component {
                 <input name='Profile Image' value={profile_image} onChange={this.handleChange}/>
               </Form.Field>
             </Form.Group>
+            <Form.Checkbox label='Register as a Stylist' onClick={this.registerStylist}/>
+
+
             <Form.Checkbox label='I agree to the Terms and Conditions' />
             <Button onClick={this.createUserOnServer}>Submit</Button>
           </Form>

@@ -7,7 +7,7 @@ export default class BecomeStylistForm extends React.Component {
   state = {
     bio: undefined,
     area: undefined,
-    services: []
+    chosenServices: undefined
   }
 
   saveStylistToServer = () => {
@@ -34,7 +34,7 @@ export default class BecomeStylistForm extends React.Component {
 
 
   render () {
-    const { bio, area, services } = this.state
+    const { bio, area } = this.state
 
     return(
       <Form>
@@ -46,16 +46,14 @@ export default class BecomeStylistForm extends React.Component {
           </Form.Field>
         </Form.Group>
         <Form.Group inline>
-          <Form.Checkbox
-            label='MUA'
-            value='MUA'
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label='Hair Stylist'
-            value='Hair Stylist'
-            onChange={this.handleChange}
-          />
+          {
+            this.props.services.map(service =>
+              <Form.Checkbox
+                label={service.name}
+                value={service.name}
+              />
+            )
+          }
         </Form.Group>
         <Form.Checkbox label='I agree to the Terms and Conditions' />
         <Button onClick={this.saveStylistToServer}>Submit</Button>

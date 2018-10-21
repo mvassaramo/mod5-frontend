@@ -85,7 +85,9 @@ export default class StylistProfile extends React.Component {
               availability.date
            )
          )].map(uniqAvail =>
-            <div className="grid-item" onClick={() => this.selectDate(uniqAvail)}>{uniqAvail}</div>
+            <div className="grid-item" onClick={() => this.selectDate(uniqAvail)}>{
+                uniqAvail.slice(8,10)}-{uniqAvail.slice(5,7)}-{uniqAvail.slice(0,4)}
+            </div>
          )
         }
 

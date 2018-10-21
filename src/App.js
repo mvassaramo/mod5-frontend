@@ -3,6 +3,7 @@ import './App.css';
 import HomePage from './HomePage'
 
 import { Route, Link } from 'react-router-dom'
+import {NotificationContainer, NotificationManager} from 'react-notifications'
 
 import RequestsContainer from './containers/RequestsContainer'
 import StylistsContainer from './containers/StylistsContainer'
@@ -30,6 +31,25 @@ export default class App extends React.Component {
     currentUser: window.localStorage.getItem('currentUser') ? JSON.parse(window.localStorage.getItem('currentUser')) : undefined
   }
 
+
+  createNotification = (type) => {
+    return () => {
+    switch (type) {
+        case 'loggedin':
+          NotificationManager.success('Login successful');
+          break;
+        case 'signin':
+          NotificationManager.error('Error message', 'Click me!', 5000, () => {
+            alert('callback');
+            });
+          break;
+        case 'newsignup':
+          NotificationManager.success('Your account has been created! Please log in.');
+          break;
+      }
+    }
+  }
+
   getUser = (user) => {
       fetch(`http://localhost:3000/users/${user.id}`)
       .then(resp => resp.json())
@@ -54,10 +74,9 @@ export default class App extends React.Component {
       .then(data => this.setState({currentUser: data},
         () => localStorage.setItem('currentUser', JSON.stringify(data))
       ))
-      .then(this.renderSuccess())
+      .then(this.createNotification('loggedin'))
   }
 
-  renderSuccess = () => <Success/>
 
   signOut = () => {
     this.setState({currentUser: undefined})
@@ -94,21 +113,21 @@ export default class App extends React.Component {
 
     return(
       <React.Fragment>
-        <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut}/>
-          <div className="App">
-        <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
-        <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
-        <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} services={services} />} />
-        <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
-        <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />
-        <Route exact path='/requests/:id' render={props => <RequestDetails {...props} request={requests.find(r => r.id === parseInt(props.match.params.id, 10) )} />} />
-        <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
-        <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn}/>} />
-        <Route exact path='/signup' render={props => <SignupForm {...props} />} />
-        <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser}/>} />
-        <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
-
+        <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut} />
+        <div className="App">
+          <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />
+          <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
+          <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} services={services} />} />
+          <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
+          <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />
+          <Route exact path='/requests/:id' render={props => <RequestDetails {...props} request={requests.find(r => r.id === parseInt(props.match.params.id, 10) )} />} />
+          <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
+          <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn} createNotification={this.createNotification}/>} />
+          <Route exact path='/signup' render={props => <SignupForm {...props} services={services} createNotification={this.createNotification}/>} />
+          <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser} services={services}/>} />
+          <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
       </div>
+       <NotificationContainer/>
       </React.Fragment>
     )
   }
