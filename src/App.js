@@ -19,6 +19,9 @@ import MyAccount from './components/MyAccount'
 import Success from './components/Success'
 import Footer from './components/Footer'
 import About from './components/About'
+import MyStylistProfile from './components/MyStylistProfile'
+
+
 
 
 
@@ -47,6 +50,12 @@ export default class App extends React.Component {
           break;
         case 'newsignup':
           NotificationManager.success('Your account has been created! Please log in.');
+          break;
+        case 'newstylist':
+          NotificationManager.success('Your stylist profile has been created!');
+          break;
+        case 'needsignin':
+          NotificationManager.success('Please sign in to book');
           break;
       }
     }
@@ -77,12 +86,14 @@ export default class App extends React.Component {
         () => localStorage.setItem('currentUser', JSON.stringify(data))
       ))
       .then(this.createNotification('loggedin'))
+
   }
 
 
   signOut = () => {
     this.setState({currentUser: undefined})
     localStorage.removeItem('currentUser')
+    window.location = window.location.origin
   }
 
   addRequest = () => this.setState({ addRequestForm: true })
@@ -106,7 +117,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getRequests()
-    this.getStylists()
+    // this.getStylists()
     this.getServices()
   }
 
@@ -118,16 +129,18 @@ export default class App extends React.Component {
         <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut} />
         <div className="App">
           <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
-          <Route exact path='/stylists' render={props => <StylistsContainer {...props} stylists={stylists}  currentUser={currentUser} services={services} />} />
-          <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
+          <Route exact path='/stylists' render={props => <StylistsContainer {...props} getStylists={this.getStylists} stylists={stylists}  currentUser={currentUser} services={services} />} />
+          <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} createNotification={this.createNotification} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
           <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />
           <Route exact path='/requests/:id' render={props => <RequestDetails {...props} request={requests.find(r => r.id === parseInt(props.match.params.id, 10) )} />} />
           <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
           <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn} createNotification={this.createNotification}/>} />
           <Route exact path='/signup' render={props => <SignupForm {...props} services={services} createNotification={this.createNotification}/>} />
-          <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} currentUser={currentUser} services={services}/>} />
+          <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} createNotification={this.createNotification} currentUser={currentUser} services={services}/>} />
           <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
           <Route exact path='/About' render={props => <About {...props} />} />
+          <Route exact path='/mystylistprofile' render={props => <MyStylistProfile {...props} createNotification={this.createNotification} currentUser={currentUser}/>} />
+
 
       </div>
         <Route exact path='/' render={props => <HomePage {...props} stylists={stylists} />} />

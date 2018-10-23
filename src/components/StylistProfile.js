@@ -55,7 +55,7 @@ export default class StylistProfile extends React.Component {
           })
         })
       }))
-      : this.renderError()
+      : this.props.createNotification('needsignin')
 
 
   }
@@ -76,7 +76,7 @@ export default class StylistProfile extends React.Component {
       stylist ?
       <React.Fragment>
         <h3>{stylist.first_name} {stylist.last_name}</h3>
-        <h4>Bio: {stylist.bio}</h4>
+        <h4>{stylist.bio}</h4>
         <h4>Area: {stylist.area}</h4>
 
         { [...new Set(

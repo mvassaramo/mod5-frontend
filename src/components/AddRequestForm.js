@@ -41,19 +41,25 @@ class AddRequestForm extends Component {
     const { first_name, last_name, title, description, date, time } = this.state
 
     return (
+      <React.Fragment>
+      <br></br>
+      <h2>Request Form</h2>
       <Form>
         <Form.Group>
           <Form.Field >
             <label>First Name </label>
-            <input name='first_name' value={first_name} onChange={this.handleChange}/>
-          </Form.Field>
+            <input name='first_name'
+                   value={first_name}
+                   onChange={this.handleChange}
+                   />
+          </Form.Field><br></br>
           <Form.Field>
             <label>Last Name </label>
             <input name='last_name'value={last_name} onChange={this.handleChange}/>
-          </Form.Field>
+          </Form.Field><br></br>
             <label>Post Title </label>
             <input name='title' value={title} onChange={this.handleChange}/>
-          <Form.Group inline>
+          <Form.Group inline><br></br>
               <label>Looking for...</label>
               <Form.Checkbox
                 label='MUA'
@@ -65,20 +71,22 @@ class AddRequestForm extends Component {
                 value='Hair Stylist'
                 onChange={this.handleChange}
               />
-          </Form.Group>
+          </Form.Group><br></br>
           <Form.Field>
             <label>Date </label>
             <input name='date' value={date} onChange={this.handleChange}/>
-          </Form.Field>
+          </Form.Field><br></br>
           <Form.Field>
             <label>Time </label>
             <input name='time'value={time} onChange={this.handleChange}/>
-          </Form.Field>
+          </Form.Field><br></br>
         </Form.Group>
         <Form.TextArea name='description' label='Description' placeholder="I'm looking for..." onChange={this.handleChange}/>
+        <br></br>
         <Form.Checkbox label='I agree to the Terms and Conditions' />
-        <Button onClick={this.saveRequestToServer}>Submit</Button>
+        <button className="button" onClick={this.saveRequestToServer}>Submit</button>
       </Form>
+      </React.Fragment>
     )
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Request from '../components/Request'
 import RequestDetails from '../components/RequestDetails'
@@ -42,7 +41,6 @@ export default class RequestsContainer extends React.Component {
     const {selectedRequest} = this.state
     return(
       <React.Fragment>
-        <Link to='/addRequest'><button>Post a request!</button></Link>
           <h1>Customer Requests</h1>
         <br></br>
         {this.renderAllRequests()}

@@ -18,6 +18,7 @@ export default class LoginForm extends React.Component {
 
     return (
       <React.Fragment>
+        <br></br>
         <h3>Please sign in below</h3>
       <Form>
         <Form.Field>
@@ -41,9 +42,9 @@ export default class LoginForm extends React.Component {
         />
         </Form.Field>
         <br></br>
-        <Button variant='contained' onClick={() => this.props.signIn(this.state.email)}>
+        <button className="button" onClick={() => this.props.signIn(this.state.email)}>
           Log In
-        </Button>
+        </button>
       </Form>
     </React.Fragment>
 

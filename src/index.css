@@ -161,3 +161,21 @@ code {
   box-shadow: 0 12px 16px 0 #d3bcc0, 0 17px 50px 0 #d3bcc0;
   cursor: pointer;
 }
+
+
+.button {
+    background-color: white;
+    color: black;
+    border: 2px solid #d3bcc0;
+}
+
+.button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #d3bcc0;
+    color: white;
+    cursor: pointer
+}

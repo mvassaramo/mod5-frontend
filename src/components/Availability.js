@@ -16,7 +16,7 @@ export default class Availability extends React.Component {
       {
          booked ?
           <p>Already taken</p>
-          : <button onClick={() => this.props.makeBookingToServer(this.props.availability)}>Book</button>
+          : <button className="button" onClick={() => this.props.makeBookingToServer(this.props.availability)}>Book</button>
       }
         </div>
       </React.Fragment>

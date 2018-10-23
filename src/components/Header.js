@@ -33,8 +33,11 @@ render ()  {
           <li className="header-link" onClick={this.props.signOut}>Sign Out</li>
           <Link to='/myaccount'><li className="header-link">My Account</li></Link>
             { !this.props.currentUser.stylist_listing  ?
-              <Link to='/newstylist'><li className="header-link">Become a Stylist</li></Link> : null
+              <Link to='/newstylist'><li className="header-link">Become a Stylist</li></Link> :
+              <Link to='/mystylistprofile'><li className="header-link">My Stylist Profile</li></Link> 
+
             }
+          <Link to='/addRequest'><li className="header-link">Post a Request</li></Link>
         </div>
       : <React.Fragment>
           <Link to='/signup'><li className="header-link">Sign up</li></Link>

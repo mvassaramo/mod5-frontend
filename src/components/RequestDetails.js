@@ -13,7 +13,7 @@ export default class RequestDetails extends React.Component {
         <p>{time}</p>
         <p>description: {description}</p>
         <p>Extra info: {other_info}</p>
-        <button>Contact {first_name}</button>
+        <button className="button">Contact {first_name}</button>
       </React.Fragment>
     )
   }

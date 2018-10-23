@@ -9,7 +9,7 @@ const Request = (props) => {
 
   return(
     <React.Fragment>
-    <div ClassName="request-card">
+    <div>
       <h3>{title}</h3>
       <p>{date}</p>
       <p>{time}</p>

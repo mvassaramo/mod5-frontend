@@ -1,5 +1,7 @@
 import React from 'react'
-import { Form, Input, Button } from 'semantic-ui-react'
+import { Form, Input, Button, Dropdown } from 'semantic-ui-react'
+
+import { areaOptions } from './AreaOptions'
 
 
 export default class BecomeStylistForm extends React.Component {
@@ -7,7 +9,7 @@ export default class BecomeStylistForm extends React.Component {
   state = {
     bio: undefined,
     area: undefined,
-    chosenServices: undefined
+    services: []
   }
 
   saveStylistToServer = () => {
@@ -16,14 +18,18 @@ export default class BecomeStylistForm extends React.Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        user_id: this.props.currentUser.id,
-        first_name: this.props.currentUser.first_name,
-        last_name:this.props.currentUser.last_name,
-        bio: bio,
-        area: area
+        stylist_listing: {
+          user_id: this.props.currentUser.id,
+          first_name: this.props.currentUser.first_name,
+          last_name:this.props.currentUser.last_name,
+          services: services,
+          bio: bio || '',
+          area: area || ''
+        }
       })
     })
       .then(resp => console.log(resp))
+      .then(this.props.createNotification('newstylist'))
 
   }
 
@@ -31,33 +37,56 @@ export default class BecomeStylistForm extends React.Component {
       this.setState({[event.target.name]: event.target.value})
     }
 
+  handleServiceToggle = service => {
+    return event => {
+      if (!this.state.services.includes(service.id)) {
+        this.setState({
+          services: [...this.state.services, service.id]
+        })
+      } else {
+        this.setState({
+          services: this.state.services.filter(s => s !== service.id)
+        })
+      }
+    }
+  }
 
 
   render () {
-    const { bio, area } = this.state
+    const { bio, area, services } = this.state
+
 
     return(
+      <React.Fragment>
+      <br></br>
+      <h2>Register as a Stylist</h2>
       <Form>
         <Form.Group>
         <Form.TextArea name='bio' label='Bio' placeholder="Tell us a bit about yourself..." onChange={this.handleChange}/>
           <Form.Field >
             <label>Area </label>
             <input name='area' value={area} onChange={this.handleChange}/>
-          </Form.Field>
+          </Form.Field><br></br>
         </Form.Group>
+        <h4>Services:</h4><br></br>
         <Form.Group inline>
           {
             this.props.services.map(service =>
               <Form.Checkbox
                 label={service.name}
                 value={service.name}
+                onChange={this.handleServiceToggle(service)}
               />
             )
           }
-        </Form.Group>
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
-        <Button onClick={this.saveStylistToServer}>Submit</Button>
+        </Form.Group><br></br>
+      <Form.Checkbox label='I agree to the Terms and Conditions' />
+        <button className="button" onClick={this.saveStylistToServer}>Submit</button>
       </Form>
+
+      <Dropdown placeholder='Select Area' fluid search selection options={areaOptions} />
+
+      </React.Fragment>
     )
   }
 

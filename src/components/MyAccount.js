@@ -35,8 +35,9 @@ export default class MyAccount extends React.Component {
     const {first_name, last_name, services, availabilities, stylist_listing} = this.props.currentUser
     return(
       <React.Fragment>
-
-        <h4>My details</h4>
+        <br></br>
+        <h2>Account Details</h2>
+        <h4>Personal details</h4>
         <p>First Name: {first_name}</p>
         <p>Last Name: {last_name}</p>
 

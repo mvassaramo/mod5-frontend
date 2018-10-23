@@ -4,7 +4,7 @@ import { Input, Icon } from 'semantic-ui-react'
 
 
 const Search = (props) =>
-  <div className="ui huge fluid icon input">
+  <div className="ui fluid icon input">
     <Input
       type="text"
       placeholder={"Search..."}

@@ -15,6 +15,9 @@ export default class StylistsContainer extends React.Component {
     findByService: ""
   }
 
+  componentDidMount = () => {
+    this.props.getStylists()
+  }
 
   findByService = (service) => {
     this.setState( {findByService: service })
