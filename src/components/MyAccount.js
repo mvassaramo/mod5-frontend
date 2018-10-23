@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'
 
 
 
@@ -32,14 +33,13 @@ export default class MyAccount extends React.Component {
   }
 
   render () {
-    const {first_name, last_name, services, availabilities, stylist_listing} = this.props.currentUser
+    const {first_name, last_name, services, availabilities, stylist_listing, email, contact_number} = this.props.currentUser
     return(
       <React.Fragment>
         <br></br>
         <h2>Account Details</h2>
-        <h4>Personal details</h4>
-        <p>First Name: {first_name}</p>
-        <p>Last Name: {last_name}</p>
+
+        <Link to='/mydetails'>Personal details</Link>
 
           <h3>Bookings:</h3>
 

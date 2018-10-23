@@ -63,11 +63,12 @@ export default class BecomeStylistForm extends React.Component {
       <Form>
         <Form.Group>
         <Form.TextArea name='bio' label='Bio' placeholder="Tell us a bit about yourself..." onChange={this.handleChange}/>
-          <Form.Field >
-            <label>Area </label>
-            <input name='area' value={area} onChange={this.handleChange}/>
-          </Form.Field><br></br>
         </Form.Group>
+        <Dropdown
+          placeholder='Select Area'
+          fluid search selection options={areaOptions}
+          onChange={this.handleChange}
+          value={areaOptions} />
         <h4>Services:</h4><br></br>
         <Form.Group inline>
           {
@@ -84,7 +85,7 @@ export default class BecomeStylistForm extends React.Component {
         <button className="button" onClick={this.saveStylistToServer}>Submit</button>
       </Form>
 
-      <Dropdown placeholder='Select Area' fluid search selection options={areaOptions} />
+
 
       </React.Fragment>
     )
@@ -93,3 +94,11 @@ export default class BecomeStylistForm extends React.Component {
 
 
 }
+
+//
+//
+// <Form.Field >
+//   <label>Area </label>
+//   <input name='area' value={area} onChange={this.handleChange}/>
+// </Form.Field><br></br>
+//

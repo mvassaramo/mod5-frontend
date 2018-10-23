@@ -20,6 +20,7 @@ import Success from './components/Success'
 import Footer from './components/Footer'
 import About from './components/About'
 import MyStylistProfile from './components/MyStylistProfile'
+import PersonalDetails from './components/PersonalDetails'
 
 
 
@@ -140,6 +141,7 @@ export default class App extends React.Component {
           <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
           <Route exact path='/About' render={props => <About {...props} />} />
           <Route exact path='/mystylistprofile' render={props => <MyStylistProfile {...props} createNotification={this.createNotification} currentUser={currentUser}/>} />
+          <Route exact path='/mydetails' render={props => <PersonalDetails {...props} createNotification={this.createNotification} currentUser={currentUser}/>} />
 
 
       </div>
