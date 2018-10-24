@@ -143,7 +143,7 @@ export default class App extends React.Component {
       <React.Fragment>
         <Header currentUser={currentUser} signIn={this.signIn} signOut={this.signOut} />
         <div className="App">
-          <Route exact path='/muas' render={props => <MuasContainer {...props} stylists={stylists} />} />
+          <Route exact path='/muas' render={props => <MuasContainer {...props} getStylists={this.getStylists} stylists={stylists}  currentUser={currentUser} services={services} />} />
           <Route exact path='/stylists' render={props => <StylistsContainer {...props} getStylists={this.getStylists} stylists={stylists}  currentUser={currentUser} services={services} />} />
           <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} createNotification={this.createNotification} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
           <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />

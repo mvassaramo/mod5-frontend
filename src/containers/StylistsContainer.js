@@ -10,7 +10,6 @@ export default class StylistsContainer extends React.Component {
 
   state = {
     searchQuery: "",
-    seeProfile: false,
     availabilities: [],
     findByService: ""
   }
@@ -30,7 +29,7 @@ export default class StylistsContainer extends React.Component {
       <Search updateSearch={this.updateSearch}/>
       <Filter findByService={this.findByService} allStylists={this.props.stylists} services={this.props.services}/>
       {
-        this.props.currentUser ?
+        this.props.currentUser && this.props.currentUser.stylist_listing ?
         stylists
         .filter(stylistListing => stylistListing.id !== this.props.currentUser.stylist_listing.id)
         .map(stylist =>

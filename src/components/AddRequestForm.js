@@ -50,16 +50,20 @@ class AddRequestForm extends Component {
               fluid label='First name'
               value={first_name}
               onChange={this.handleChange}
-                   />
+              placeholder='first name'
+              />
             <Form.Input name='last_name'
               fluid label='Last name'
               value={last_name}
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              placeholder='last name'/>
         </Form.Group>
             <Form.Input name='title'
               fluid label='Post title'
               value={title}
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              placeholder='post title'
+              />
         <Form.TextArea name='description'
           label='Description'
           placeholder="I'm looking for..."
@@ -96,7 +100,7 @@ class AddRequestForm extends Component {
         <Form.Group>
           <Form.Field>
             <label>Date </label>
-            <input name='date' value={date} onChange={this.handleChange}/>
+            <input name='date' value={date} onChange={this.handleChange} placeholder='dd/mm/yyyy'/>
           </Form.Field><br></br>
           <Form.Field>
             <label>Time </label>

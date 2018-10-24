@@ -45,11 +45,11 @@ export default class SignupForm extends React.Component {
 
         return (
           <React.Fragment><br></br>
-          <h2>Register below!</h2>
+          <h3>Register below!</h3>
           <Form>
             <Form.Group widths='equal'>
-                <Form.Input fluid label='First name' type='first_name' name='first_name' value={first_name} onChange={this.handleChange} />
-                <Form.Input fluid label='Last name' type='last_name' name='last_name' value={last_name} onChange={this.handleChange}/>
+                <Form.Input fluid label='First name' type='first_name' name='first_name' value={first_name} onChange={this.handleChange} placeholder='first name'/>
+                <Form.Input fluid label='Last name' type='last_name' name='last_name' value={last_name} onChange={this.handleChange} placeholder='last name'/>
             </Form.Group>
                 <Form.Input fluid label='Email' type='email' name='email' value={email} onChange={this.handleChange} placeholder='email'/>
                   <label>Password</label>
@@ -62,7 +62,7 @@ export default class SignupForm extends React.Component {
                   />
               <Form.Field>
                 <label>Contact Number </label>
-                <input name='contact_number' value={contact_number} onChange={this.handleChange}/>
+                <input name='contact_number' value={contact_number} onChange={this.handleChange} placeholder='contact number'/>
               </Form.Field>
               <Form.Field>
                 <label>Profile Photo </label>
