@@ -28,12 +28,20 @@ export default class BecomeStylistForm extends React.Component {
         }
       })
     })
-      .then(resp => console.log(resp))
-      .then(this.props.createNotification('newstylist'))
+      .then(resp => resp.json())
+      .then(data => {
+        this.props.updateCurrentUserWithStylistListing(data)
+        this.props.createNotification('newstylist')
+        this.props.history.push('/mystylistprofile')
+      })
 
   }
-
+  handleDropdownChange = (event, { value }) => {
+    console.log(event, value)
+      this.setState({ area: value})
+    }
   handleChange = (event) => {
+    console.log(event, event.target.name, event.target.value)
       this.setState({[event.target.name]: event.target.value})
     }
 
@@ -62,15 +70,19 @@ export default class BecomeStylistForm extends React.Component {
       <h2>Register as a Stylist</h2>
       <Form>
         <Form.Group>
-        <Form.TextArea name='bio' label='Bio' placeholder="Tell us a bit about yourself..." onChange={this.handleChange}/>
+        <Form.TextArea name='bio'
+          placeholder="Tell us a bit about yourself..."
+          onChange={this.handleChange}
+          width={16}/>
         </Form.Group>
         <Dropdown
           placeholder='Select Area'
           fluid search selection options={areaOptions}
-          onChange={this.handleChange}
-          value={areaOptions} />
+          onChange={this.handleDropdownChange}
+          name='area'
+          value={this.state.area} />
         <h4>Services:</h4><br></br>
-        <Form.Group inline>
+        <Form.Group>
           {
             this.props.services.map(service =>
               <Form.Checkbox

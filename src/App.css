@@ -19,6 +19,15 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+.logo-link {
+  display: inline;
+  float: left;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px;
+}
+
 .header-link {
   display: inline;
   float: right;
@@ -42,17 +51,5 @@
    color: white;
    font-size: 10px;
    text-align: center;
-   height: 10vmin;
+   height: 13vmin;
 }
-
-
-/*
-.homepage-header {
-  background-color: #f5e3e0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */

@@ -4,6 +4,7 @@ import React from 'react'
 export default class RequestDetails extends React.Component {
 
   render () {
+    if (!this.props.request) return (<></>)
     const {title, date, time, first_name, description, other_info} = this.props.request
 
     return(

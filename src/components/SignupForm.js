@@ -44,39 +44,31 @@ export default class SignupForm extends React.Component {
         const { first_name, last_name, email, contact_number, profile_image } = this.state
 
         return (
-          <React.Fragment>
-          <h3>Register below!</h3>
-          <Form className="form">
-            <Form.Group>
-              <Form.Field>
-                <label>First Name </label>
-                <input name='first_name' value={first_name} onChange={this.handleChange}/>
-              </Form.Field><br></br>
-              <Form.Field>
-                <label>Last Name </label>
-                <input name='last_name'value={last_name} onChange={this.handleChange}/>
-              </Form.Field><br></br>
-                <label>Email </label>
-                <input name='email' value={email} onChange={this.handleChange}/>
-                  <Form.Field>
+          <React.Fragment><br></br>
+          <h2>Register below!</h2>
+          <Form>
+            <Form.Group widths='equal'>
+                <Form.Input fluid label='First name' type='first_name' name='first_name' value={first_name} onChange={this.handleChange} />
+                <Form.Input fluid label='Last name' type='last_name' name='last_name' value={last_name} onChange={this.handleChange}/>
+            </Form.Group>
+                <Form.Input fluid label='Email' type='email' name='email' value={email} onChange={this.handleChange} placeholder='email'/>
                   <label>Password</label>
                   <Form.Input
                     id='passwordInput'
-                    placeholder='Password'
+                    placeholder='password'
                     margin='normal'
                     name='password'
                     type='password'
                   />
-                  </Form.Field>
-              <Form.Field><br></br>
+              <Form.Field>
                 <label>Contact Number </label>
                 <input name='contact_number' value={contact_number} onChange={this.handleChange}/>
-              </Form.Field><br></br>
+              </Form.Field>
               <Form.Field>
                 <label>Profile Photo </label>
                 <input name='Profile Image' value={profile_image} onChange={this.handleChange}/>
               </Form.Field><br></br>
-            </Form.Group>
+
             <Form.Checkbox label='Register as a Stylist' onClick={this.registerStylist}/>
 
 

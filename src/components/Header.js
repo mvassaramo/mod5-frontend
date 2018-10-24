@@ -26,6 +26,8 @@ render ()  {
       <Link to='/muas'><li className="header-link">MUAs</li></Link>
       <Link to='/stylists'><li className="header-link">Stylists</li></Link>
       <Link to='/requests'><li className="header-link">Requests</li></Link>
+      <Link to='/'><h1 className="logo-link">TressFree.</h1></Link>
+
         <img src={headerImage} className="header-img" />
 
       {this.props.currentUser ?
@@ -34,7 +36,7 @@ render ()  {
           <Link to='/myaccount'><li className="header-link">My Account</li></Link>
             { !this.props.currentUser.stylist_listing  ?
               <Link to='/newstylist'><li className="header-link">Become a Stylist</li></Link> :
-              <Link to='/mystylistprofile'><li className="header-link">My Stylist Profile</li></Link> 
+              <Link to='/mystylistprofile'><li className="header-link">My Stylist Profile</li></Link>
 
             }
           <Link to='/addRequest'><li className="header-link">Post a Request</li></Link>

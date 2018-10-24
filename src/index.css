@@ -108,13 +108,6 @@ code {
     object-fit: cover;
   }
 
-  #logo {
-      width: 100px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-  }
-
   .stylist-list {
     margin: auto
   }
@@ -132,7 +125,7 @@ code {
   border: 3px dashed #d3bcc0;
   font-size: 40px;
   font-style: italic;
-  height: 180px;
+  height: 155px;
 }
 
 .homepage-option:hover {

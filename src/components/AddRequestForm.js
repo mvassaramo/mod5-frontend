@@ -45,22 +45,27 @@ class AddRequestForm extends Component {
       <br></br>
       <h2>Request Form</h2>
       <Form>
-        <Form.Group>
-          <Form.Field >
-            <label>First Name </label>
-            <input name='first_name'
-                   value={first_name}
-                   onChange={this.handleChange}
+        <Form.Group widths='equal'>
+            <Form.Input name='first_name'
+              fluid label='First name'
+              value={first_name}
+              onChange={this.handleChange}
                    />
-          </Form.Field><br></br>
-          <Form.Field>
-            <label>Last Name </label>
-            <input name='last_name'value={last_name} onChange={this.handleChange}/>
-          </Form.Field><br></br>
-            <label>Post Title </label>
-            <input name='title' value={title} onChange={this.handleChange}/>
-          <Form.Group inline><br></br>
-              <label>Looking for...</label>
+            <Form.Input name='last_name'
+              fluid label='Last name'
+              value={last_name}
+              onChange={this.handleChange}/>
+        </Form.Group>
+            <Form.Input name='title'
+              fluid label='Post title'
+              value={title}
+              onChange={this.handleChange}/>
+        <Form.TextArea name='description'
+          label='Description'
+          placeholder="I'm looking for..."
+          onChange={this.handleChange}/>
+        <label>Services:</label><br></br><br></br>
+          <Form.Group>
               <Form.Checkbox
                 label='MUA'
                 value='MUA'
@@ -71,7 +76,24 @@ class AddRequestForm extends Component {
                 value='Hair Stylist'
                 onChange={this.handleChange}
               />
+            <Form.Checkbox
+                label='Waxing'
+                value='waxing'
+                onChange={this.handleChange}
+              />
+            <Form.Checkbox
+                label='Bridal'
+                value='Bridal'
+                onChange={this.handleChange}
+              />
+            <Form.Checkbox
+                label='Nails'
+                value='Nails'
+                onChange={this.handleChange}
+              />
           </Form.Group><br></br>
+
+        <Form.Group>
           <Form.Field>
             <label>Date </label>
             <input name='date' value={date} onChange={this.handleChange}/>
@@ -79,9 +101,9 @@ class AddRequestForm extends Component {
           <Form.Field>
             <label>Time </label>
             <input name='time'value={time} onChange={this.handleChange}/>
-          </Form.Field><br></br>
+          </Form.Field>
         </Form.Group>
-        <Form.TextArea name='description' label='Description' placeholder="I'm looking for..." onChange={this.handleChange}/>
+
         <br></br>
         <Form.Checkbox label='I agree to the Terms and Conditions' />
         <button className="button" onClick={this.saveRequestToServer}>Submit</button>

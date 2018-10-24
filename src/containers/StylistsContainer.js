@@ -29,9 +29,17 @@ export default class StylistsContainer extends React.Component {
       <h1>All Hairstylists</h1>
       <Search updateSearch={this.updateSearch}/>
       <Filter findByService={this.findByService} allStylists={this.props.stylists} services={this.props.services}/>
-      {stylists.map(stylist =>
+      {
+        this.props.currentUser ?
+        stylists
+        .filter(stylistListing => stylistListing.id !== this.props.currentUser.stylist_listing.id)
+        .map(stylist =>
         <Stylist stylist={stylist} currentUser={this.props.currentUser}/>
-      )}
+      )
+      : stylists.map(stylist =>
+        <Stylist stylist={stylist} currentUser={this.props.currentUser}/>
+      )
+    }
     </div>
 
 
@@ -39,8 +47,8 @@ export default class StylistsContainer extends React.Component {
 
   filterStylists = () =>
     this.props.stylists.filter(stylist => {
-      const first_name = stylist.first_name.toLowerCase()
-      const last_name = stylist.last_name.toLowerCase()
+      const first_name = (stylist.first_name || '').toLowerCase()
+      const last_name = (stylist.last_name || '').toLowerCase()
       const bio = stylist.bio.toLowerCase()
       const area = stylist.area.toLowerCase()
       const searchQuery = this.state.searchQuery.toLowerCase()
@@ -74,3 +82,5 @@ export default class StylistsContainer extends React.Component {
 
 
 }
+
+//

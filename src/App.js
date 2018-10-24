@@ -63,10 +63,10 @@ export default class App extends React.Component {
   }
 
   getUser = (user) => {
-      fetch(`http://localhost:3000/users/${user.id}`)
+      fetch(`http://localhost:3000/api/v1/users/${user.id}`)
       .then(resp => resp.json())
       .then(data => this.setState({currentUser: data},
-        () => localStorage.setItem('currentUser', data.id)
+        () => localStorage.setItem('currentUser', JSON.stringify(data))
       ))
     }
 
@@ -117,9 +117,23 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.currentUser) {
+      this.getUser(this.state.currentUser)
+    }
     this.getRequests()
     // this.getStylists()
     this.getServices()
+  }
+
+  updateCurrentUserWithStylistListing = (stylistListing) => {
+    this.setState({
+      currentUser: Object.assign(
+        this.state.currentUser,
+        {
+          stylist_listing: stylistListing
+        }
+      )
+    })
   }
 
   render () {
@@ -137,7 +151,7 @@ export default class App extends React.Component {
           <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
           <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn} createNotification={this.createNotification}/>} />
           <Route exact path='/signup' render={props => <SignupForm {...props} services={services} createNotification={this.createNotification}/>} />
-          <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} createNotification={this.createNotification} currentUser={currentUser} services={services}/>} />
+          <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} updateCurrentUserWithStylistListing={this.updateCurrentUserWithStylistListing} createNotification={this.createNotification} currentUser={currentUser} services={services}/>} />
           <Route exact path='/myaccount' render={props => <MyAccount {...props} currentUser={currentUser} stylists={stylists} />} />
           <Route exact path='/About' render={props => <About {...props} />} />
           <Route exact path='/mystylistprofile' render={props => <MyStylistProfile {...props} createNotification={this.createNotification} currentUser={currentUser}/>} />
