@@ -31,6 +31,9 @@ class AddRequestForm extends Component {
       })
     })
       .then(resp => console.log(resp))
+      .then(this.props.createNotification('newrequest'))
+      .then(this.props.getRequests)
+      .then(this.props.history.push('/requests'))
   }
 
   handleChange = (event) => {

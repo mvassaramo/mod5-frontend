@@ -58,6 +58,9 @@ export default class App extends React.Component {
         case 'needsignin':
           NotificationManager.success('Please sign in to book');
           break;
+        case 'newrequest':
+          NotificationManager.success('Your request has been posted!');
+          break;
       }
     }
   }
@@ -136,6 +139,8 @@ export default class App extends React.Component {
     })
   }
 
+
+
   render () {
     const {requests, stylists, services, currentUser } = this.state
 
@@ -148,7 +153,7 @@ export default class App extends React.Component {
           <Route exact path='/stylists/:id' render={props => <StylistProfile {...props} createNotification={this.createNotification} stylist={stylists.find(s => s.id === parseInt(props.match.params.id, 10) )} currentUser={currentUser}/>} />
           <Route exact path='/requests' render={props => <RequestsContainer {...props} requests={requests} />} />
           <Route exact path='/requests/:id' render={props => <RequestDetails {...props} request={requests.find(r => r.id === parseInt(props.match.params.id, 10) )} />} />
-          <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  currentUser={currentUser}/>} />
+          <Route exact path='/addRequest' render={props => <AddRequestForm {...props}  createNotification={this.createNotification} getRequests={this.getRequests}currentUser={currentUser}/>} />
           <Route exact path='/signin' render={props => <LoginForm {...props} signIn={this.signIn} createNotification={this.createNotification}/>} />
           <Route exact path='/signup' render={props => <SignupForm {...props} services={services} createNotification={this.createNotification}/>} />
           <Route exact path='/newstylist' render={props => <BecomeStylistForm {...props} updateCurrentUserWithStylistListing={this.updateCurrentUserWithStylistListing} createNotification={this.createNotification} currentUser={currentUser} services={services}/>} />

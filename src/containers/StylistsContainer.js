@@ -25,10 +25,12 @@ export default class StylistsContainer extends React.Component {
 
   renderStylists = stylists =>
     <div className="stylist-list">
-      <h1>All Hairstylists</h1>
-      <Search updateSearch={this.updateSearch}/>
+      <br></br>
+      <h1>All Hairstylists</h1><br></br>
+      <Search updateSearch={this.updateSearch}/><br></br>
       <Filter findByService={this.findByService} allStylists={this.props.stylists} services={this.props.services}/>
-      {
+    <br></br>
+    {
         this.props.currentUser && this.props.currentUser.stylist_listing ?
         stylists
         .filter(stylistListing => stylistListing.id !== this.props.currentUser.stylist_listing.id)

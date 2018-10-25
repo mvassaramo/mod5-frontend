@@ -9,6 +9,7 @@ export default class RequestDetails extends React.Component {
 
     return(
       <React.Fragment>
+        <br></br>
         <h3>{title}</h3>
         <p>{date}</p>
         <p>{time}</p>
